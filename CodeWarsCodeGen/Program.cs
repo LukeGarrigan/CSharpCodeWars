@@ -23,11 +23,8 @@ var methodName = Console.ReadLine();
 Console.WriteLine("What is the return type?");
 var returnType = Console.ReadLine();
 
-Console.WriteLine("What is the argument type?");
-var argumentType = Console.ReadLine();
-
-Console.WriteLine($"{difficulty} Kyu, with method name {methodName}, return type of {returnType} and an argument of {argumentType}");
-
+Console.WriteLine("What are the arguments, for multiple seperate by a comma e.g string,List<int>?");
+var argumentTypes = Console.ReadLine();
 
 var parent = Directory.GetParent(Directory.GetCurrentDirectory().Replace("\\CodeWarsCodeGen\\bin\\Debug", ""));
 
@@ -42,13 +39,38 @@ using (StreamWriter writer = new StreamWriter(filePath))
     writer.WriteLine( "using System;");
     writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName}");
     writer.WriteLine( "{");
-    writer.WriteLine( "    public class Kata");
+    writer.WriteLine($"    public class {kataName}");
     writer.WriteLine( "    {");
-    writer.WriteLine($"        public {returnType} {methodName}({argumentType} myArg)");
+    writer.WriteLine($"        public {returnType} {methodName}({GetArgumentValue()})");
     writer.WriteLine( "        {");
     writer.WriteLine(GetReturnValue());
     writer.WriteLine( "        }");
     writer.WriteLine( "    }");
+    writer.WriteLine( "}");
+}
+
+var testFilePath = $"{newFolder}\\{kataName}Tests.cs";
+using (StreamWriter writer = new StreamWriter(testFilePath))
+{
+    writer.WriteLine( "using NUnit.Framework;");
+    writer.WriteLine( "");
+    writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName};");
+    writer.WriteLine( "");
+    writer.WriteLine($"public class {kataName}Tests");
+    writer.WriteLine( "{");
+    writer.WriteLine($"      private {kataName} _sut;");
+    writer.WriteLine( "      ");
+    writer.WriteLine( "      [SetUp]");
+    writer.WriteLine( "      public void Setup()");
+    writer.WriteLine( "      {");
+    writer.WriteLine($"          _sut = new {kataName}();");
+    writer.WriteLine( "      }");
+    writer.WriteLine( "");
+    writer.WriteLine( "      [Test]");
+    writer.WriteLine( "      public void Test1()");
+    writer.WriteLine( "      {");
+    writer.WriteLine( "          ");
+    writer.WriteLine( "      }");
     writer.WriteLine( "}");
 }
 
@@ -72,4 +94,23 @@ string GetReturnValue()
             break;
     }
     return $"             return {output};";
+}
+
+
+string GetArgumentValue()
+{
+    if (!argumentTypes.Contains(","))
+    {
+        return $"{argumentTypes} arg1";
+    }
+    var arguments = argumentTypes.Split(",");
+
+    var output = "";
+    for (var i = 0; i < arguments.Length - 1; i++)
+    {
+        output += $"{arguments[i]} arg{i + 1},";
+    }
+    output += $" {arguments[^1]} arg{arguments.Length}";
+
+    return output;
 }

@@ -53,6 +53,7 @@ var testFilePath = $"{newFolder}\\{kataName}Tests.cs";
 using (StreamWriter writer = new StreamWriter(testFilePath))
 {
     writer.WriteLine( "using NUnit.Framework;");
+    writer.WriteLine( "using FluentAssertions;");
     writer.WriteLine( "");
     writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName};");
     writer.WriteLine( "");

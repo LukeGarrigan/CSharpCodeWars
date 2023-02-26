@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Kyu1" />
+      <Folder Include="Kyu2" />
+      <Folder Include="Kyu3" />
+      <Folder Include="Kyu4" />
+      <Folder Include="Kyu6" />
+      <Folder Include="Kyu5" />
+      <Folder Include="Kyu7" />
+      <Folder Include="Kyu8" />
+    </ItemGroup>
+
+</Project>

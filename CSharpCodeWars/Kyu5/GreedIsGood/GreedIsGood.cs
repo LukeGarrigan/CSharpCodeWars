@@ -1,4 +1,3 @@
-using System;
 namespace CSharpCodeWars.Kyu5.GreedIsGood
 {
     public class GreedIsGood
@@ -15,9 +14,8 @@ namespace CSharpCodeWars.Kyu5.GreedIsGood
 
         public int Score(int[] dice)
         {
-
-            int[] tripleValues = { 0, 1000, 200, 300, 400, 500, 600 };
-            int[] singleValues = { 0, 100, 0, 0, 0, 50, 0 };
+            var tripleValues = new[] { 0, 1000, 200, 300, 400, 500, 600 };
+            var singleValues = new[] { 0, 100, 0, 0, 0, 50, 0 };
 
             var total = 0;
             for (var dieSide = 1; dieSide <= 6; dieSide++)

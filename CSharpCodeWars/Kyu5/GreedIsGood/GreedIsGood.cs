@@ -12,53 +12,18 @@ namespace CSharpCodeWars.Kyu5.GreedIsGood
         // Three 2's =>  200 points
         // One   1   =>  100 points
         // One   5   =>   50 point
-        
+
         public int Score(int[] dice)
         {
-            var dictionary = new Dictionary<int, int>();
 
-            foreach (var current in dice)
-            {
-                if (dictionary.ContainsKey(current))
-                {
-                    dictionary[current]++;
-                }
-                else
-                {
-                    dictionary[current] = 1;
-                }
-            }
+            int[] tripleValues = { 0, 1000, 200, 300, 400, 500, 600 };
+            int[] singleValues = { 0, 100, 0, 0, 0, 50, 0 };
 
             var total = 0;
-            foreach (var (key, value) in dictionary)
+            for (var dieSide = 1; dieSide <= 6; dieSide++)
             {
-                if (key == 1 && value < 3)
-                {
-                    total += key * 100 * value;
-                }
-
-                if (key == 5 && value < 3)
-                {
-                    total += key * 10 * value;
-                }
-
-                if (value >= 3)
-                {
-                    total += key * (key == 1 ? 1000 : 100);
-
-                    if (value - 3 >= 1)
-                    {
-                        if (key == 5)
-                        {
-                            total += 50 * (value - 3);
-                        }
-                        if (key == 1)
-                        {
-                            total += 100 * (value - 3);
-                        }
-                    }
-                }
-
+                var valueCount = dice.Count(roll => roll == dieSide);
+                total += tripleValues[dieSide] * (valueCount / 3) + (valueCount % 3) * singleValues[dieSide];
             }
 
             return total;

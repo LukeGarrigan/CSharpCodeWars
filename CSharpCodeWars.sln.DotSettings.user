@@ -10,5 +10,7 @@
     &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.FixStringCase.FixStringCaseTests.BasicTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.SquareNSum.SquareNSumTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.DisemvowelTrolls.DisemvowelTrollsTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.YouCantCodeUnderPressure1.YouCantCodeUnderPressure1Tests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.FriendOrFoe.FriendOrFoeTests.Test1&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

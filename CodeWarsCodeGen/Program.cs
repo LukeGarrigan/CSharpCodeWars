@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text.RegularExpressions;
+
 var difficulty = 8;
 var difficultySet = false;
 while (!difficultySet)
@@ -36,64 +38,63 @@ Directory.CreateDirectory(newFolder);
 var filePath = $"{newFolder}\\{kataName}.cs";
 using (StreamWriter writer = new StreamWriter(filePath))
 {
-    writer.WriteLine( "using System;");
+    writer.WriteLine("using System;");
     writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName}");
-    writer.WriteLine( "{");
+    writer.WriteLine("{");
     writer.WriteLine($"    public class {kataName}");
-    writer.WriteLine( "    {");
+    writer.WriteLine("    {");
     writer.WriteLine($"        public {returnType} {methodName}({GetArgumentValue()})");
-    writer.WriteLine( "        {");
+    writer.WriteLine("        {");
     writer.WriteLine(GetReturnValue());
-    writer.WriteLine( "        }");
-    writer.WriteLine( "    }");
-    writer.WriteLine( "}");
+    writer.WriteLine("        }");
+    writer.WriteLine("    }");
+    writer.WriteLine("}");
 }
 
 var testFilePath = $"{newFolder}\\{kataName}Tests.cs";
 using (StreamWriter writer = new StreamWriter(testFilePath))
 {
-    writer.WriteLine( "using NUnit.Framework;");
-    writer.WriteLine( "using FluentAssertions;");
-    writer.WriteLine( "");
+    writer.WriteLine("using NUnit.Framework;");
+    writer.WriteLine("using FluentAssertions;");
+    writer.WriteLine("");
     writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName};");
-    writer.WriteLine( "");
+    writer.WriteLine("");
     writer.WriteLine($"public class {kataName}Tests");
-    writer.WriteLine( "{");
+    writer.WriteLine("{");
     writer.WriteLine($"      private {kataName} _sut;");
-    writer.WriteLine( "      ");
-    writer.WriteLine( "      [SetUp]");
-    writer.WriteLine( "      public void Setup()");
-    writer.WriteLine( "      {");
+    writer.WriteLine("      ");
+    writer.WriteLine("      [SetUp]");
+    writer.WriteLine("      public void Setup()");
+    writer.WriteLine("      {");
     writer.WriteLine($"          _sut = new {kataName}();");
-    writer.WriteLine( "      }");
-    writer.WriteLine( "");
-    writer.WriteLine( "      [Test]");
-    writer.WriteLine( "      public void Test1()");
-    writer.WriteLine( "      {");
-    writer.WriteLine( "          ");
-    writer.WriteLine( "      }");
-    writer.WriteLine( "}");
+    writer.WriteLine("      }");
+    writer.WriteLine("");
+    writer.WriteLine("      [Test]");
+    writer.WriteLine("      public void Test1()");
+    writer.WriteLine("      {");
+    writer.WriteLine("          ");
+    writer.WriteLine("      }");
+    writer.WriteLine("}");
 }
 
 string GetReturnValue()
 {
     var output = "";
 
-    switch (returnType)
+    if (returnType == "string")
+        output += "\"\"";
+    else if (returnType == "int")
+        output += "0";
+    else if (returnType == "double")
+        output += "0.0";
+    else if (returnType == "bool")
+        output += "true";
+    else if (returnType.StartsWith("IEnumerable"))
     {
-        case "string":
-            output += "\"\"";
-            break;
-        case "int":
-            output += "0";
-            break;
-        case "double":
-            output += "0.0";
-            break;
-        case "bool":
-            output += "true";
-            break;
+        var type = returnType[(returnType.IndexOf("<") + 1)..^1];
+        output += $"Enumerable.Empty<{type}>()";
     }
+    
     return $"             return {output};";
 }
 
@@ -104,6 +105,7 @@ string GetArgumentValue()
     {
         return $"{argumentTypes} arg1";
     }
+
     var arguments = argumentTypes.Split(",");
 
     var output = "";
@@ -111,6 +113,7 @@ string GetArgumentValue()
     {
         output += $"{arguments[i]} arg{i + 1},";
     }
+
     output += $" {arguments[^1]} arg{arguments.Length}";
 
     return output;

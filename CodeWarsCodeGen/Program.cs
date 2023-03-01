@@ -94,7 +94,12 @@ string GetReturnValue()
         var type = returnType[(returnType.IndexOf("<") + 1)..^1];
         output += $"Enumerable.Empty<{type}>()";
     }
-    
+    else if (returnType.EndsWith("[]"))
+    {
+        var type = returnType.Split("[");
+        output += $"Array.Empty<{type[0]}>()";
+    }
+
     return $"             return {output};";
 }
 

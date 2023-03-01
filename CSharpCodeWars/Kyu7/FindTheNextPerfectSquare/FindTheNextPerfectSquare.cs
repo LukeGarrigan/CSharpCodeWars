@@ -7,7 +7,7 @@ namespace CSharpCodeWars.Kyu7.FindTheNextPerfectSquare
         {
             var r = (long)Math.Sqrt(sq);
             if (r * r != sq) return -1;
-            return ((r + 1) * (r + 1));
+            return (r + 1) * (r + 1);
         }
     }
 }

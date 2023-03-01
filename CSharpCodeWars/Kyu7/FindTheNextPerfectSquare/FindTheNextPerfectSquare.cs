@@ -3,12 +3,11 @@ namespace CSharpCodeWars.Kyu7.FindTheNextPerfectSquare
 {
     public class FindTheNextPerfectSquare
     {
-        public long FindNextSquare(long perfSquare)
+        public long FindNextSquare(long sq)
         {
-            var sqrt = Math.Sqrt(perfSquare); 
-            if (sqrt % 1 != 0) return -1;
-            sqrt++;
-            return Convert.ToInt64(sqrt*sqrt);
+            var r = (long)Math.Sqrt(sq);
+            if (r * r != sq) return -1;
+            return ((r + 1) * (r + 1));
         }
     }
 }

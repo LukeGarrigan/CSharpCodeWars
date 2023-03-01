@@ -5,7 +5,7 @@ namespace CSharpCodeWars.Kyu8.KeepHydrated
     {
         public int Litres(double time)
         {
-            return (int)Math.Floor(time * 0.5);
+            return (int)(time * 0.5);
         }
     }
 }

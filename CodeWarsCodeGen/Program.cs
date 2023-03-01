@@ -83,7 +83,7 @@ string GetReturnValue()
 
     if (returnType == "string")
         output += "\"\"";
-    else if (returnType == "int")
+    else if (returnType is "int" or "long")
         output += "0";
     else if (returnType == "double")
         output += "0.0";

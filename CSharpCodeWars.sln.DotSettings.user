@@ -1,26 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6288e47d_002D8d3f_002D486e_002Dbd67_002D98978d2c7f40/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ae8fe59d_002Db8e4_002D4195_002Dad47_002Df60169679d46/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BasicTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.IndexedCapitalization.IndexedCapitalizationTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.CubeChecker.CubeCheckerTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.PairOfGloves.PairOfGlovesTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu5.GreedIsGood.GreedIsGoodTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu4.SumOfIntervals.SumOfIntervalsTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.SumListIgnoreDups.SumListIgnoreDupsTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.FixStringCase.FixStringCaseTests.BasicTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.SquareNSum.SquareNSumTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.DisemvowelTrolls.DisemvowelTrollsTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.YouCantCodeUnderPressure1.YouCantCodeUnderPressure1Tests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.FriendOrFoe.FriendOrFoeTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.CountSmileyFaces.CountSmileyFacesTests.BasicTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.StringsEndWith.StringsEndWithTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.BreakCamelCase.BreakCamelCaseTests.Test&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.BreakCamelCase.BreakCamelCaseTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu4.SumStringsAsNumbers.SumStringsAsNumbersTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu4.SumStringsAsNumbers.SumStringsAsNumbersTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.FindTheNextPerfectSquare.FindTheNextPerfectSquareTests.Test1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu8.KeepHydrated.KeepHydratedTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.YourOrderPlease.YourOrderPleaseTests.SampleTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu6.SortTheOdd.SortTheOddTests.BasicTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.AverageOfNumbers.AverageOfNumbersTests.BasicTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -2,5 +2,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ae8fe59d_002Db8e4_002D4195_002Dad47_002Df60169679d46/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BasicTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.AverageOfNumbers.AverageOfNumbersTests.BasicTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::80E730C9-0148-49D1-9B34-D4C57499A5E8::net6.0::CSharpCodeWars.Kyu7.SumOfTwoLowestIntegers.SumOfTwoLowestIntegersTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

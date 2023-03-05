@@ -15,7 +15,7 @@ namespace CSharpCodeWars.Kyu4.PathFinder2ShortestPath
             var seen = new List<Position>();
 
 
-            var width = maze.GetLength(0) - 1; // unsure atm if different width/height is pos
+            var width = maze.GetLength(0) - 1; 
             var height = maze.GetLength(0) - 1;
             
             var goalPos = new Position(width, height, -1);

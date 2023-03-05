@@ -7,7 +7,7 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
         public int PathFinder(string mazeAsString)
         {
             var maze = ConvertToArray(mazeAsString);
-            var open = new List<Position>();
+            var open = new SortedList<Position, int>();
             var closed = new HashSet<Position>();
 
             var width = maze.GetLength(0) - 1; 
@@ -16,16 +16,16 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
             var goalPos = new Position(width, height, -1, 0);
             var startPos = new Position(0, 0, 0, 0 );
             closed.Add(startPos);
-            open.Add(startPos);
+            open.Add(startPos, startPos.F);
 
             while (open.Any())
             {
-                var current = open.OrderBy(s => s.F).First();
+                var current = open.Keys.First();
 
-                open.Remove(current);
+                open.RemoveAt(0);
                 closed.Add(current);
                 
-                if (current.X == goalPos.X && current.Y == goalPos.Y )
+                if (current.X == goalPos.X && current.Y == goalPos.Y)
                 {
                     return current.Count;
                 }
@@ -34,13 +34,15 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
 
                 foreach (var child in possibleMoves.Where(pos => !HasSeen(closed, pos)))
                 {
-                    closed.Add(child);
-
-                    var existingChild = open.FirstOrDefault(o => o.X == child.X && o.Y == child.Y);
+                    var existingChild = open.FirstOrDefault(o => o.Key.X == child.X && o.Key.Y == child.Y);
                     
-                    if (existingChild == null || existingChild.Count > child.Count)
+                    if (existingChild.Key == null)
                     {
-                        open.Add(child);   
+                        open.Add(child, child.F);   
+                    } else if (existingChild.Key.Count > child.Count)
+                    {
+                        open.Remove(existingChild.Key);
+                        open.Add(child, child.F);
                     }
                 }
             }
@@ -89,7 +91,7 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
 
         private static int CalculateF(int currentX, int currentY, int[,] maze, int currentCost)
         {
-            var manhattanDistance = Math.Abs(currentX - ((maze.GetLength(0) - 1))) + Math.Abs(currentY - (maze.GetLength(0) - 1));
+            var manhattanDistance = Math.Abs(currentX - (maze.GetLength(0) - 1)) + Math.Abs(currentY - (maze.GetLength(0) - 1));
             return currentCost + manhattanDistance;
         }
 
@@ -112,7 +114,7 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
             {
                 for (var x = 0; x < xLength; x++)
                 {
-                    maze[y, x] = int.Parse(lines[y][x].ToString());
+                    int.TryParse(lines[y][x].ToString(), out maze[y, x]);
                 }
             }
 
@@ -120,7 +122,7 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
         }
     }
 
-    class Position
+    class Position : IComparable
     {
 
         public int X { get; set; }
@@ -135,6 +137,7 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
             Count = count;
             F = f;
         }
+        
 
         public override bool Equals(object obj)
         {
@@ -150,6 +153,18 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
         public override int GetHashCode()
         {
             return X.GetHashCode() ^ Y.GetHashCode();
+        }
+
+        public int CompareTo(object obj)
+        {
+            var other = (Position)obj;
+            
+            if (other == null) return 1;
+
+            if (X == other.X)
+                return Y.CompareTo(other.Y);
+
+            return X.CompareTo(other.X);
         }
     }
 }

@@ -12,94 +12,62 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
 
             var size = maze.GetLength(0) - 1; 
             
-            var goalPos = new Position(size, size, -1, 0);
-            var startPos = new Position(0, 0, 0, 0 );
+            var goalPos = new Position(size, size, -1);
+            var startPos = new Position(0, 0, 0);
             closed.Add(startPos);
-            open.Enqueue(startPos, startPos.F);
+            open.Enqueue(startPos, 0);
 
-            while (open.TryDequeue(out var current, out _))
+            while (open.Count > 0)
             {
+                var current = open.Dequeue();
                 closed.Add(current);
                 
-                if (current.X == goalPos.X && current.Y == goalPos.Y)
+                if (current.Equals(goalPos))
                 {
                     return current.Count;
                 }
-
-                foreach (var child in GetNeighbours(current, maze, size, closed))
+                
+                foreach (var child in GetNeighbours(current, maze, size).Where(pos => !closed.Contains(pos)))
                 {
-                    open.Enqueue(child, child.F);   
+                    open.Enqueue(child, child.Count);   
                 }
             }
 
             return -1;
         }
 
-        private static List<Position> GetNeighbours(Position current, int[,] maze, int size, HashSet<Position> closed)
+        private static IEnumerable<Position> GetNeighbours(Position current, int[,] maze, int size)
         {
             var possibleMoves = new List<Position>();
             // N
             if (current.Y > 0)
             {
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[current.X, current.Y - 1]);
-                var f = CalculateF(current.X, current.Y - 1, size, current.Count + difference);
-                var child = new Position(current.X, current.Y - 1, current.Count + difference, f);
-                if (!HasSeen(closed, child))
-                {
-                    possibleMoves.Add(child);    
-                }
-                
+                possibleMoves.Add(new Position(current.X, current.Y - 1, current.Count + difference));
             }
 
             // S
             if (current.Y < size)
             {
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[current.X, current.Y + 1]);
-                var f = CalculateF(current.X, current.Y + 1, size, current.Count + difference);
-                var child = new Position(current.X, current.Y + 1, current.Count + difference, f);
-                if (!HasSeen(closed, child))
-                {
-                    possibleMoves.Add(child);    
-                }
+                possibleMoves.Add(new Position(current.X, current.Y + 1, current.Count + difference));
             }
 
             // W
             if (current.X > 0)
             {
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[current.X - 1, current.Y]);
-                var f = CalculateF(current.X - 1, current.Y, size, current.Count + difference);
-                var child = new Position(current.X - 1, current.Y, current.Count + difference, f);
-                if (!HasSeen(closed, child))
-                {
-                    possibleMoves.Add(child);    
-                }
+                possibleMoves.Add(new Position(current.X - 1, current.Y, current.Count + difference));
             }
 
             // E
             if (current.X < size)
             {
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[current.X + 1, current.Y]);
-                var f = CalculateF(current.X + 1, current.Y, size, current.Count + difference);
-                var child = new Position(current.X + 1, current.Y, current.Count + difference, f);
-                if (!HasSeen(closed, child))
-                {
-                    possibleMoves.Add(child);    
-                }
+                possibleMoves.Add(new Position(current.X + 1, current.Y, current.Count + difference));
             }
 
             return possibleMoves;
-        }
-
-        private static int CalculateF(int currentX, int currentY, int size, int currentCost)
-        {
-            var manhattanDistance = Math.Abs(currentX - size) + Math.Abs(currentY - size);
-            return currentCost + manhattanDistance;
-        }
-
-
-        private static bool HasSeen(IEnumerable<Position> positions, Position pos)
-        {
-            return positions.Any(seenPos => seenPos.X == pos.X && seenPos.Y == pos.Y && seenPos.Count <= pos.Count);
         }
 
         private static int[,] ConvertToArray(string mazeAsString)
@@ -131,12 +99,11 @@ namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist
         public int Count { get; set; }
         public int F { get; set; }
         
-        public Position(int x, int y, int count, int f)
+        public Position(int x, int y, int count)
         {
             X = x;
             Y = y;
             Count = count;
-            F = f;
         }
         
 

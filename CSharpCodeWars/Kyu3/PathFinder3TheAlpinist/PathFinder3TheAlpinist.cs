@@ -10,6 +10,8 @@ public class PathFinder3TheAlpinist
         var open = new PriorityQueue<Position, int>();
         var closed = new HashSet<Position>();
 
+        var neighbours = new Dictionary<Position, HashSet<Position>>();
+
         var size = maze.GetLength(0) - 1; 
             
         var goalPos = new Position(size, size);
@@ -17,7 +19,7 @@ public class PathFinder3TheAlpinist
         closed.Add(startPos);
         open.Enqueue(startPos, 0);
 
-        while (open.TryDequeue(out var current, out int priority))
+        while (open.TryDequeue(out var current, out var priority))
         {
             closed.Add(current);
                 
@@ -26,7 +28,7 @@ public class PathFinder3TheAlpinist
                 return priority;
             }
                 
-            foreach (var child in GetNeighbours(current, maze, size).Where(pos => !closed.Contains(pos)))
+            foreach (var child in GetNeighbours(neighbours, current, size).Where(pos => !closed.Contains(pos)))
             {
                     
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[child.X, child.Y]);
@@ -37,9 +39,15 @@ public class PathFinder3TheAlpinist
         return -1;
     }
 
-    private static IEnumerable<Position> GetNeighbours(Position current, int[,] maze, int size)
+    private static IEnumerable<Position> GetNeighbours(Dictionary<Position, HashSet<Position>> neighbours,
+        Position current, int size)
     {
-        var possibleMoves = new List<Position>();
+        if (neighbours.ContainsKey(current))
+        {
+            return neighbours[current];
+        }
+
+        var possibleMoves = new HashSet<Position>();
         // N
         if (current.Y > 0)
         {
@@ -63,6 +71,8 @@ public class PathFinder3TheAlpinist
         {
             possibleMoves.Add(new Position(current.X + 1, current.Y));
         }
+
+        neighbours[current] = possibleMoves;
 
         return possibleMoves;
     }

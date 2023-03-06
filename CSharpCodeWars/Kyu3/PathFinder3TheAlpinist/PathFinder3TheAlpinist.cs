@@ -1,4 +1,3 @@
-using System;
 
 namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist;
 
@@ -6,18 +5,7 @@ public class PathFinder3TheAlpinist
 {
     public int PathFinder(string mazeAsString)
     {
-        var maze = ConvertToArray(mazeAsString);
-
-        var priorities = new int[maze.Length, maze.Length];
-        
-        for (var y = 0; y < maze.Length; y++)
-        {
-            for (var x = 0; x < maze.Length; x++)
-            {
-                priorities[x, y] = int.MaxValue;
-            }
-        }
-        
+        var (maze, priorities) = ConvertToArray(mazeAsString);
         var open = new PriorityQueue<Position, int>();
         var size = maze.GetLength(0) - 1; 
             
@@ -27,7 +15,7 @@ public class PathFinder3TheAlpinist
 
         while (open.TryDequeue(out var current, out var priority))
         {
-            if (current.Equals(goalPos))
+            if (current.X == goalPos.X && current.Y == goalPos.Y)
             {
                 return priority;
             }
@@ -79,23 +67,24 @@ public class PathFinder3TheAlpinist
         return possibleMoves;
     }
 
-    private static int[,] ConvertToArray(string mazeAsString)
+    private static (int[,] maze, int[,] priorities) ConvertToArray(string mazeAsString)
     {
         var lines = mazeAsString.Split("\n");
         var xLength = lines[0].Length;
         var yLength = lines.Length;
 
         var maze = new int[xLength, yLength];
-
+        var priorities = new int[xLength, yLength];
         for (var y = 0; y < yLength; y++)
         {
             for (var x = 0; x < xLength; x++)
             {
                 int.TryParse(lines[y][x].ToString(), out maze[y, x]);
+                priorities[x, y] = int.MaxValue;
             }
         }
 
-        return maze;
+        return (maze, priorities);
     }
 }
 

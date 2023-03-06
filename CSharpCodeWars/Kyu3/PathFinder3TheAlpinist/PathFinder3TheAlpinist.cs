@@ -7,46 +7,50 @@ public class PathFinder3TheAlpinist
     public int PathFinder(string mazeAsString)
     {
         var maze = ConvertToArray(mazeAsString);
+
+        var priorities = new int[maze.Length, maze.Length];
+        
+        for (var y = 0; y < maze.Length; y++)
+        {
+            for (var x = 0; x < maze.Length; x++)
+            {
+                priorities[x, y] = int.MaxValue;
+            }
+        }
+        
         var open = new PriorityQueue<Position, int>();
-        var closed = new HashSet<Position>();
-
-        var neighbours = new Dictionary<Position, HashSet<Position>>();
-
         var size = maze.GetLength(0) - 1; 
             
         var goalPos = new Position(size, size);
         var startPos = new Position(0, 0);
-        closed.Add(startPos);
         open.Enqueue(startPos, 0);
 
         while (open.TryDequeue(out var current, out var priority))
         {
-            closed.Add(current);
-                
             if (current.Equals(goalPos))
             {
                 return priority;
             }
                 
-            foreach (var child in GetNeighbours(neighbours, current, size).Where(pos => !closed.Contains(pos)))
+            foreach (var child in GetNeighbours(current, size))
             {
-                    
                 var difference = Math.Abs(maze[current.X, current.Y] - maze[child.X, child.Y]);
-                open.Enqueue(child, priority + difference);   
+
+                var childCost = priority + difference;
+                if (childCost < priorities[child.X, child.Y])
+                {
+                    priorities[child.X, child.Y] = childCost;
+                    open.Enqueue(child, childCost);   
+                }
             }
         }
 
         return -1;
     }
 
-    private static IEnumerable<Position> GetNeighbours(Dictionary<Position, HashSet<Position>> neighbours,
+    private static IEnumerable<Position> GetNeighbours(
         Position current, int size)
     {
-        if (neighbours.ContainsKey(current))
-        {
-            return neighbours[current];
-        }
-
         var possibleMoves = new HashSet<Position>();
         // N
         if (current.Y > 0)
@@ -72,8 +76,6 @@ public class PathFinder3TheAlpinist
             possibleMoves.Add(new Position(current.X + 1, current.Y));
         }
 
-        neighbours[current] = possibleMoves;
-
         return possibleMoves;
     }
 
@@ -82,7 +84,6 @@ public class PathFinder3TheAlpinist
         var lines = mazeAsString.Split("\n");
         var xLength = lines[0].Length;
         var yLength = lines.Length;
-
 
         var maze = new int[xLength, yLength];
 

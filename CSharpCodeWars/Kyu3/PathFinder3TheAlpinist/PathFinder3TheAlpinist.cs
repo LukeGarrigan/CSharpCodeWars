@@ -1,9 +1,10 @@
 
 namespace CSharpCodeWars.Kyu3.PathFinder3TheAlpinist;
 
+
+// Dijkstras algorithm
 public class PathFinder3TheAlpinist
 {
-    // note: Dijkstras algorithm
     public int PathFinder(string mazeAsString)
     {
         var (maze, priorities) = ConvertToArray(mazeAsString);

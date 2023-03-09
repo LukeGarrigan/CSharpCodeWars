@@ -39,14 +39,14 @@ var filePath = $"{newFolder}\\{kataName}.cs";
 using (StreamWriter writer = new StreamWriter(filePath))
 {
     writer.WriteLine("using System;");
-    writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName}");
+    writer.WriteLine("");
+    writer.WriteLine($"namespace CSharpCodeWars.Kyu{difficulty}.{kataName};");
+    writer.WriteLine("");
+    writer.WriteLine($"public class {kataName}");
     writer.WriteLine("{");
-    writer.WriteLine($"    public class {kataName}");
+    writer.WriteLine($"    public {returnType} {methodName}({GetArgumentValue()})");
     writer.WriteLine("    {");
-    writer.WriteLine($"        public {returnType} {methodName}({GetArgumentValue()})");
-    writer.WriteLine("        {");
     writer.WriteLine(GetReturnValue());
-    writer.WriteLine("        }");
     writer.WriteLine("    }");
     writer.WriteLine("}");
 }
@@ -100,7 +100,7 @@ string GetReturnValue()
         output += $"Array.Empty<{type[0]}>()";
     }
 
-    return $"             return {output};";
+    return $"         return {output};";
 }
 
 

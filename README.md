@@ -16,7 +16,7 @@ dotnet run --project .\CodeWarsCodeGen
 
 This will create a class and a test project:
 
-```
+```csharp
 using System;
 
 namespace CSharpCodeWars.Kyu6.ConvertToCamel;
@@ -30,7 +30,7 @@ public class ConvertToCamel
 }
 ```
 
-```
+```csharp
 using NUnit.Framework;
 using FluentAssertions;
 

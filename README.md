@@ -1,7 +1,7 @@
 <h1 align="center">CodeWars Kata Solutions C#</h1>
 
 ## Overview
-This repo contains Kata solutions written in C#. It also contains a code generator to make implementing solutions a faster and more organised.
+This repo contains Kata solutions written in C#. It also contains a code generator to make implementing solutions faster and consistent.
 
 ## My profile
 [![](https://www.codewars.com/users/LukeGarrigan/badges/large)](https://www.codewars.com/users/LukeGarrigan)

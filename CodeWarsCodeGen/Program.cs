@@ -124,7 +124,7 @@ string GetArgumentValue()
     return output;
 }
 
-string ConvertToPascalCase(string? kataName)
+string ConvertToPascalCase(string nameOfKata)
 {
-    return string.Join("", kataName.Split(" ").Select(name => char.ToUpper(name[0]) + name.Substring(1, name.Length - 1)));
+    return string.Join("", nameOfKata.Split(" ").Select(name => char.ToUpper(name[0]) + name.Substring(1, name.Length - 1)));
 }

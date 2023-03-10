@@ -17,7 +17,7 @@ while (!difficultySet)
 }
 
 Console.WriteLine("What is the Kata name?");
-var kataName = Console.ReadLine();
+var kataName = ConvertToPascalCase(Console.ReadLine());
 
 Console.WriteLine("What is the method name?");
 var methodName = Console.ReadLine();
@@ -122,4 +122,9 @@ string GetArgumentValue()
     output += $" {arguments[^1]} arg{arguments.Length}";
 
     return output;
+}
+
+string ConvertToPascalCase(string? kataName)
+{
+    return string.Join("", kataName.Split(" ").Select(name => char.ToUpper(name[0]) + name.Substring(1, name.Length - 1)));
 }

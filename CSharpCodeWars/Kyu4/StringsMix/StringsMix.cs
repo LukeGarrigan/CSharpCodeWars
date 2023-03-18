@@ -14,7 +14,6 @@ public class StringsMix
         ProcessGroup(group1, group2, 1, outputList);
         ProcessGroup(group2, group1, 2, outputList);
 
-
         var sortedList = outputList.OrderByDescending(item => item.Length).ThenBy(item => item[0]).ThenBy(item => item);
         
         return string.Join("/", sortedList);

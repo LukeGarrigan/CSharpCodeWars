@@ -94,7 +94,7 @@ public class Car : ICar
         }
         else if (maxAcceleration < 5)
         {
-            maxAcceleration = 10;
+            maxAcceleration = 5;
         }
 
         drivingProcessor = new DrivingProcessor(maxAcceleration);
@@ -109,25 +109,23 @@ public class Car : ICar
     public void BrakeBy(int speed)
     {
         drivingProcessor.ReduceSpeed(speed);
-        ConsumePetrol();
     }
 
     public void RunningIdle()
     {
-        if (EngineIsRunning)
-        {
-            engine.Consume(0.0003);
-        }
+        ConsumePetrol();
     }
 
     public void EngineStart()
     {
         engine.Start();
+        ConsumePetrol();
     }
 
     public void EngineStop()
     {
         engine.Stop();
+        ConsumePetrol();
     }
 
     public void Accelerate(int speed)
@@ -157,7 +155,6 @@ public class Car : ICar
             else
             {
                 drivingProcessor.ReduceSpeed(1);
-                ConsumePetrol();
             }
         }
     }
@@ -171,24 +168,18 @@ public class Car : ICar
     {
         if (EngineIsRunning)
         {
-            switch (drivingProcessor.ActualSpeed)
-            {
-                case >= 1 and <= 60:
-                    engine.Consume(0.0020);
-                    break;
-                case >= 61 and <= 100:
-                    engine.Consume(0.0014);
-                    break;
-                case >= 101 and <= 140:
-                    engine.Consume(0.0020);
-                    break;
-                case >= 141 and <= 200:
-                    engine.Consume(0.0025);
-                    break;
-                case >= 201 and <= 250:
-                    engine.Consume(0.0030);
-                    break;
-            }
+            if (drivingProcessor.ActualSpeed is >= 1 and <= 60)
+                engine.Consume(0.0020);
+            else if (drivingProcessor.ActualSpeed is >= 61 and <= 100)
+                engine.Consume(0.0014);
+            else if (drivingProcessor.ActualSpeed is >= 101 and <= 140)
+                engine.Consume(0.0020);
+            else if (drivingProcessor.ActualSpeed is >= 141 and <= 200)
+                engine.Consume(0.0025);
+            else if (drivingProcessor.ActualSpeed is >= 201 and <= 250)
+                engine.Consume(0.0030);
+            else
+                engine.Consume(0.0003);
         }
     }
 
@@ -217,11 +208,13 @@ public class Car : ICar
 
         public void Consume(double amount)
         {
-            if (!IsRunning) return;
-            _fuelTank.Consume(amount);
-            if (_fuelTank.FillLevel == 0)
+            if (IsRunning)
             {
-                Stop();
+                _fuelTank.Consume(amount);
+                if (_fuelTank.FillLevel == 0)
+                {
+                    Stop();
+                }
             }
         }
     }
@@ -298,7 +291,7 @@ public class Car : ICar
 
         public void IncreaseSpeedTo(int speed)
         {
-            if (ActualSpeed <= speed)
+            if (ActualSpeed < speed)
             {
                 ActualSpeed += _maxAcceleration;
                 if (ActualSpeed > speed) ActualSpeed = speed;
@@ -310,7 +303,8 @@ public class Car : ICar
         {
             if (ActualSpeed > 0)
             {
-                ActualSpeed -= (speed > 10 ? 10 : speed);
+                if (speed > 10) speed = 10;
+                ActualSpeed -= speed;
                 if (ActualSpeed < 0) ActualSpeed = 0;
             }
         }
